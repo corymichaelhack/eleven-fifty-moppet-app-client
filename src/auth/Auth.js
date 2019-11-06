@@ -1,18 +1,32 @@
-import React from 'react';
-import {Container, Row, Col} from 'reactstrap';
+import React, { useState } from 'react';
+import {Container, Row, Col, Button} from 'reactstrap';
 import Signup from './Signup';
 import Login from './Login';
 
 const Auth = (props) => {
+    const [login, setLogin] = useState(true);
+
+    const onAuthFieldButton = (event) => {
+        event.preventDefault();
+        setLogin(!login);
+    }
+
+    const authFields = () => {
+        return login ? <Login updateToken={props.updateToken}/> : <Signup updateToken={props.updateToken}/>
+
+    }
+
+//     const protectedViews = () => {
+//     return (sessionToken === localStorage.getItem('token') ? <WorkoutIndex token={sessionToken}/> : <Auth updateToken={updateToken} />)
+//   }
+
     return(
         <Container className="auth-container">
             <Row>
-                <Col md="6">
-                    <Signup updateToken={props.updateToken}/>
-                </Col>
-                <Col md="6" className="login-col">
-                    <Login updateToken={props.updateToken}/>
-                </Col>
+            <Col md="6" className="login-col">
+                {authFields()}
+                <Button id="button" style={{marginTop: "10px"}} onClick={onAuthFieldButton}>Signup an Admin</Button>
+            </Col>
             </Row>
         </Container>
     )
