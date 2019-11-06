@@ -1,26 +1,20 @@
-import React, {useState } from 'react';
-import { Container, Button, Form, FormGroup, Label, Input  } from 'reactstrap';
+import React from 'react';
+import {Container, Row, Col} from 'reactstrap';
+import Signup from './Signup';
+import Login from './Login';
 
-
-
-const Auth = () => {
-
-    const [email, setEmail] = useState('')
-
+const Auth = (props) => {
     return(
-        <Container>
-            <Form>
-            <h1>Login</h1>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                <Label for="email" className="mr-sm-2">Email</Label>
-                <Input value={ email } onChange={(event)=>setEmail(event.target.value)} type="email" name="email" id="email" placeholder="something@idk.cool" />
-            </FormGroup>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                <Label for="examplePassword" className="mr-sm-2">Password</Label>
-                <Input type="password" name="password" id="examplePassword" placeholder="don't tell!" />
-            </FormGroup>
-            <Button>Submit</Button>
-            </Form>
+        <Container className="auth-container">
+            <Row>
+                {/* <Col md="6">
+                    <Signup updateToken={props.updateToken}/>
+                </Col> */}
+                <Col md="6" className="login-col">
+                    <Login updateToken={props.updateToken}/>
+                    {/* <Login/> */}
+                </Col>
+            </Row>
         </Container>
     )
 }
