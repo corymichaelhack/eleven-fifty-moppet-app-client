@@ -1,5 +1,5 @@
 import React, {useState } from 'react';
-import { Container, Button, Form, FormGroup, Label, Input  } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input  } from 'reactstrap';
 
 
 const Login = (props) => {
@@ -12,9 +12,11 @@ const Login = (props) => {
         event.preventDefault();
         fetch("http://localhost:3000/moppet/user/signin", {
             method: "POST",
-            body: JSON.stringify({
+            body: JSON.stringify({ user: {
                 email: email,
                 password: password
+            }
+                
             }),
             headers: new Headers({
                 'Content-Type' : 'application/json'
@@ -29,20 +31,21 @@ const Login = (props) => {
     }
 
     return(
-        <Container>
-            <Form>
-            <h1>Login</h1>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                <Label for="email" className="mr-sm-2">Email</Label>
-                <Input value={ email } onChange={(event)=>setEmail(event.target.value)} type="email" name="email" id="email" placeholder="something@idk.cool" />
-            </FormGroup>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                <Label for="examplePassword" className="mr-sm-2">Password</Label>
-                <Input value={ password } onChange={(event)=>setPassword(event.target.value)} type="password" name="password" id="examplePassword" placeholder="don't tell!" />
-            </FormGroup>
-            <Button>Submit</Button>
+        <div>
+            <Form onSubmit={onSubmitChange}>
+                <h1>Login</h1>
+                <FormGroup >
+                    <Label for="emailLogin">Email</Label>
+                    <Input value={ email } onChange={(event)=>setEmail(event.target.value)} type="email" name="email" id="emailLogin" placeholder="something@idk.cool" />
+                </FormGroup>
+                <FormGroup >
+                    <Label for="password">Password</Label>
+                    <Input value={ password } onChange={(event)=>setPassword(event.target.value)} type="password" name="password" id="password" placeholder="don't tell!" />
+                </FormGroup>
+                <Button type="submit">Login</Button>
             </Form>
-        </Container>
+        </div>
+            
     )
 }
 
