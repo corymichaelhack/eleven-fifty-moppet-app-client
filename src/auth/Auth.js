@@ -16,9 +16,6 @@ const Auth = (props) => {
 
     }
 
-//     const protectedViews = () => {
-//     return (sessionToken === localStorage.getItem('token') ? <WorkoutIndex token={sessionToken}/> : <Auth updateToken={updateToken} />)
-//   }
 
     return(
         <Container className="auth-container">

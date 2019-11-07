@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import './App.css';
 import Auth from './auth/Auth';
+import ChildHome from './children/ChildHome';
 
 function App() {
 
@@ -23,14 +24,13 @@ function App() {
     setSessionToken('');
   }
 
-  // const protectedViews = () => {
-  //   return (sessionToken === localStorage.getItem('token') ? <WorkoutIndex token={sessionToken}/> : <Auth updateToken={updateToken} />)
-  // }
+  const protectedViews = () => {
+    return (sessionToken === localStorage.getItem('token') ? <ChildHome token={sessionToken}/> : <Auth updateToken={updateToken} />)
+  }
 
   return (
     <div>
-     <Auth updateToken={updateToken}/>
-     {/* {protectedViews()} */}
+     {protectedViews()}
     </div>
   )
 }
