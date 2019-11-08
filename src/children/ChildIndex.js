@@ -6,17 +6,27 @@ import ChildShow from './ChildShow';
 
 
 const ChildIndex = (props) => {
-    const [children, setChildren] = useState([]);
+   
+    const [child, setChild] = useState({});
+    const [updateActive, setUpdateActive] = useState(false);
+    const [childToShow, setChildToShow] = useState({});
 
-    
-    //IMMEDIATELY LOAD THE CHILD UPON PAGE RENDER
-    useEffect(() => {
-        fetchChildren();   
-    }, [])
+    const showChild = (child) => {
+        setChildToShow(child);    
+    }
 
-    //FECTH THE CHILD FROM DATABASE
-    const fetchChildren = () => {
-        fetch('http://localhost:3000/moppet/child/allchildren', {
+    const updateOn = () => {
+        setUpdateActive(true);
+    }
+
+    const updateOff = () => {
+        setUpdateActive(false);
+    }
+
+     //FECTH THE CHILD FROM DATABASE
+     const fetchChild = () => {
+        
+        fetch(`http://localhost:3000/moppet/child/getchild/${props.child.id}`, {
             method: "GET",
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -24,12 +34,13 @@ const ChildIndex = (props) => {
             }) 
         })
         .then((res) => res.json())
-        .then((childData) => setChildren(childData))
+        .then((childData) => setChild(childData))
     }
 
 
+
     const childMapper = () => {
-        return children.map((child, index) => {
+        return props.children.map((child, index) => {
             return(
                 <div>
                 <Card key={child.id}>
@@ -37,24 +48,23 @@ const ChildIndex = (props) => {
                     <CardBody>
                     <CardTitle>{child.lastName}, {child.firstName}</CardTitle>
                     
-                    <Button color="primary">Show more...</Button>
+                    <Button onClick={()=>{showChild(child);updateOn()}}color="primary" >Show more...</Button>
                     </CardBody>
-                    
-                
-                    
-                </Card>
-                <ChildShow token={props.token} child={child}/>
+               </Card>
                 </div>
-            
             )
         })
 
     }
 
+    //FUNCTION TO SHOW UPDATE MODAL
+
 
     return ( 
         <div>
         {childMapper()}
+        {updateActive ? <ChildShow showChild={showChild}childToShow={childToShow} updateOff={updateOff} token={props.token } fetchChild={fetchChild} fetchChildren={props.fetchChildren} /> : <></>}
+        {/* <ChildShow/> */}
         </div>
         
     );

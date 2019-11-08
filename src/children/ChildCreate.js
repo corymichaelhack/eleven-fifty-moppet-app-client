@@ -17,11 +17,11 @@ const ChildCreate = (props) => {
             body: JSON.stringify(
                 { child:
                     {
-                firstName: firstName,
-                lastName: lastName,
-                dateOfBirth: dateOfBirth,
-                meds: meds,
-                allergy: allergy
+                        firstName: firstName,
+                        lastName: lastName,
+                        dateOfBirth: dateOfBirth,
+                        meds: meds,
+                        allergy: allergy
                     }
                 }),
             headers: new Headers({
@@ -29,7 +29,9 @@ const ChildCreate = (props) => {
                 'Authorization': props.token
             }) 
         })
-        .then( (res) => res.json())
+        .then( (res) => {
+            props.fetchChildren();
+        })
     }
 
     return (
