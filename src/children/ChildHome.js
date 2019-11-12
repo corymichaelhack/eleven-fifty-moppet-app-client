@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container, Button } from 'reactstrap';
 import ChildCreate from './ChildCreate';
 import ChildIndex from './ChildIndex';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
 
 
 
@@ -50,8 +53,8 @@ const ChildHome = (props) => {
             {/* CREATE A CHILD */}
 
                 {updateActive ? <ChildCreate token={props.token } updateOff={updateOff} fetchChildren={fetchChildren}/> : <></>}
-
-                <Button style={{float: 'right'}} onClick={()=>{updateOn()}}color="primary" >Create Child</Button>
+                
+                <Button style={{float: 'right'}} onClick={()=>{updateOn()}}color="primary" ><FontAwesomeIcon style={{ padding: '2px'}} icon={faPlus} />Enroll Child</Button>
        
            
             
