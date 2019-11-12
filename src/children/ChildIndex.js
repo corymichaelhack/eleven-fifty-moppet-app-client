@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardBody, CardTitle, Button, CardImg } from 'reactstrap';
-import profile from './cardImg_318x180.svg';
+import React, { useState } from 'react';
+import { Card, CardBody, CardTitle, Button, CardImg, CardDeck } from 'reactstrap';
+
 import ChildShow from './ChildShow';
 
 
@@ -42,9 +42,9 @@ const ChildIndex = (props) => {
     const childMapper = () => {
         return props.children.map((child, index) => {
             return(
-                <div>
-                <Card key={child.id}>
-                    <CardImg top width="100%" src={profile}/>
+                <div key={index}>
+                <Card >
+                    <CardImg style={{width: "200px", borderRadius: "100px", }} top src={child.imageUrl}/>
                     <CardBody>
                     <CardTitle>{child.lastName}, {child.firstName}</CardTitle>
                     
@@ -62,9 +62,10 @@ const ChildIndex = (props) => {
 
     return ( 
         <div>
-        {childMapper()}
+            <CardDeck>
+            {childMapper()}
+            </CardDeck>
         {updateActive ? <ChildShow showChild={showChild}childToShow={childToShow} updateOff={updateOff} token={props.token } fetchChild={fetchChild} fetchChildren={props.fetchChildren} /> : <></>}
-        {/* <ChildShow/> */}
         </div>
         
     );

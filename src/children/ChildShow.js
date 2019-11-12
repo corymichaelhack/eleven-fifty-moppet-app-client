@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {  Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import profile from './cardImg_318x180.svg';
+
 
 const ChildShow = (props) => {
     console.log(props)
@@ -25,10 +25,10 @@ const ChildShow = (props) => {
                         allergy: showAllergy
                     }
                 }),
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': props.token
-            })
+            // headers: new Headers({
+            //     'Content-Type': 'application/json',
+            //     'Authorization': props.token
+            // })
         })
         .then((res) => {
             props.fetchChildren();
@@ -85,6 +85,7 @@ const ChildShow = (props) => {
                     <Input onChange={(event) => setShowAllergy(event.target.value)} type="text" name="allergy" value={showAllergy}/>
                 </FormGroup>
                <Button color="primary" type="submit">Save updates</Button>
+               <Button style={{float: "right"}} size="sm" color="outline-dark" onClick={() => {props.updateOff()}}>Exit</Button>
                
            </Form> 
         </ModalBody>

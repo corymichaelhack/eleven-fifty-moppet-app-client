@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import './App.css';
 import Auth from './auth/Auth';
 import ChildHome from './children/ChildHome';
+import Navigation from './navigation/NavigationBar';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <div>
+      <Navigation clickLogout={clearToken}/>
      {protectedViews()}
     </div>
   )

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, CardDeck } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 import ChildCreate from './ChildCreate';
 import ChildIndex from './ChildIndex';
-import ChildShow from './ChildShow';
+
 
 
 
@@ -10,13 +10,19 @@ const ChildHome = (props) => {
 
     const [children, setChildren] = useState([]);
     const [childToUpdate, setChildToUpdate] = useState({});
+    const [updateActive, setUpdateActive] = useState(false);
 
     const showChild = (child) => {
         setChildToUpdate(child);
-        console.log(child)
     }
 
+    const updateOn = () => {
+        setUpdateActive(true);
+    }
 
+    const updateOff = () => {
+        setUpdateActive(false);
+    }
  
 
     //IMMEDIATELY LOAD THE CHILD UPON PAGE RENDER
@@ -40,10 +46,14 @@ const ChildHome = (props) => {
     
     return (
         <Container className="child-container">
+
             {/* CREATE A CHILD */}
-                <Col sm="12" md={{ size: 6, offset: 3 }} >
-                    <ChildCreate fetchChildren={fetchChildren}/>
-                </Col>
+
+                {updateActive ? <ChildCreate token={props.token } updateOff={updateOff} fetchChildren={fetchChildren}/> : <></>}
+
+                <Button onClick={()=>{updateOn()}}color="primary" >Create Child</Button>
+       
+           
             
             {/* SHOW ALL CHILDREN */}
                 <ChildIndex  token={props.token} children={children} fetchChildren={fetchChildren} showChild={showChild}  />
