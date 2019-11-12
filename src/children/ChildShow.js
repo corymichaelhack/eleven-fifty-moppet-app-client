@@ -25,10 +25,10 @@ const ChildShow = (props) => {
                         allergy: showAllergy
                     }
                 }),
-            // headers: new Headers({
-            //     'Content-Type': 'application/json',
-            //     'Authorization': props.token
-            // })
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': props.token
+            })
         })
         .then((res) => {
             props.fetchChildren();

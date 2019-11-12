@@ -1,0 +1,21 @@
+
+.jumbotron {
+  position: relative;
+}
+  .greeting {
+    font-family: 'Poppins';
+    color: white;
+    text-shadow: 2px 2px 5px black;
+  }
+
+  .lead {
+    display: inline;
+    margin: 0px;
+    padding: 10px;
+    font-family: 'Poppins';
+    color: black;
+    background-color: rgb(84, 185, 185, 0.7);
+    border-radius: 5px;
+  
+  }
+  

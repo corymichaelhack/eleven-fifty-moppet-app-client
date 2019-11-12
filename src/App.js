@@ -3,6 +3,7 @@ import './App.css';
 import Auth from './auth/Auth';
 import ChildHome from './children/ChildHome';
 import Navigation from './navigation/NavigationBar';
+import JumbotronHeader from './header/JumbotronHeader';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
   return (
     <div>
       <Navigation clickLogout={clearToken}/>
+      <JumbotronHeader />
      {protectedViews()}
     </div>
   )

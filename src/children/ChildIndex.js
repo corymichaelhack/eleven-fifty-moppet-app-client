@@ -62,6 +62,7 @@ const ChildIndex = (props) => {
 
     return ( 
         <div>
+            <h3>Enrolled Children</h3>
             <CardDeck>
             {childMapper()}
             </CardDeck>

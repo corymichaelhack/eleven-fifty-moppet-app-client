@@ -51,7 +51,7 @@ const ChildHome = (props) => {
 
                 {updateActive ? <ChildCreate token={props.token } updateOff={updateOff} fetchChildren={fetchChildren}/> : <></>}
 
-                <Button onClick={()=>{updateOn()}}color="primary" >Create Child</Button>
+                <Button style={{float: 'right'}} onClick={()=>{updateOn()}}color="primary" >Create Child</Button>
        
            
             
