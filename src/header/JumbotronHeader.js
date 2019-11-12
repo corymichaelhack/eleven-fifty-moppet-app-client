@@ -12,7 +12,7 @@ const JumbotronHeader = (props) => {
       <Jumbotron className="jumbotron" style={{backgroundImage: `url(${bgimage})`, backgroundSize: '100%'}}>
         <div>
             <h1 className="greeting">Hello, Admins</h1>
-            <p className="lead">Tackle the day, not our children.</p>
+            <p className="lead">Tackle the day, not the children.</p>
         </div>
         
         <hr className="my-2" />
