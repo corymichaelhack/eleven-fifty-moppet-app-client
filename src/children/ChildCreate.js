@@ -83,7 +83,7 @@ const ChildCreate = (props) => {
         <ModalHeader>
         <div>Add Child
         </div>
-        <Button style={{float: "right"}} size="sm" color="outline-dark" onClick={() => {props.updateOff()}}>Exit</Button>
+       
         </ModalHeader>
 
         
@@ -122,6 +122,7 @@ const ChildCreate = (props) => {
                 </FormGroup>
                 
                 <Button type="submit">Click to Submit</Button>
+                <Button style={{float: "right"}} size="sm" color="outline-dark" onClick={() => {props.updateOff()}}>Exit</Button>
             </Form> 
             </ModalBody>
             </Modal>

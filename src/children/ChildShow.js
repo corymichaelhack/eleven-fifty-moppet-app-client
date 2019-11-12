@@ -53,13 +53,16 @@ const ChildShow = (props) => {
 
     return( 
         <Modal isOpen={true} >
+               <button style={{float: "right", marginLeft: "85%"}} onClick={() => {props.updateOff()}} type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <ModalHeader>
-        <div>Child Info
+        <div style={{ display: 'inline'}}>Child Info
         </div>
-        <Button style={{float: "right"}} size="sm" color="outline-danger" onClick={() => {deleteChild(props.child)}}>Delete</Button>
+
         </ModalHeader>
-        
         <ModalBody>
+   
         <Form onSubmit={childUpdate}>
                <FormGroup>
                    <Label htmlFor="description">First Name:</Label>
@@ -85,7 +88,8 @@ const ChildShow = (props) => {
                     <Input onChange={(event) => setShowAllergy(event.target.value)} type="text" name="allergy" value={showAllergy}/>
                 </FormGroup>
                <Button color="primary" type="submit">Save updates</Button>
-               <Button style={{float: "right"}} size="sm" color="outline-dark" onClick={() => {props.updateOff()}}>Exit</Button>
+               <Button style={{float: "right"}} size="sm" color="outline-danger" onClick={() => {deleteChild(props.child)}}>Delete</Button>
+           
                
            </Form> 
         </ModalBody>
