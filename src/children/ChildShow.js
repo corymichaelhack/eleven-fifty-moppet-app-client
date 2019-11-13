@@ -52,8 +52,8 @@ const ChildShow = (props) => {
     
 
     return( 
-        <Modal isOpen={true} >
-               <button style={{float: "right", marginLeft: "85%"}} onClick={() => {props.updateOff()}} type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <Modal isOpen={true} fade>
+               <button style={{float: "right", marginLeft: "85%"}} onClick={() => {props.updateOff()}} type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <ModalHeader>
