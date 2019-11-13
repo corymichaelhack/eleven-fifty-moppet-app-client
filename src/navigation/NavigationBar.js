@@ -25,10 +25,10 @@ const NavigationBar = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink onClick={handleLogin}style={{ cursor: "pointer"}}>Login</NavLink>
+              { (!props.sessionTokenLogged) ? <NavLink onClick={handleLogin}style={{ cursor: "pointer"}}>Login</NavLink> : <></>}
             </NavItem>
             <NavItem>
-              <NavLink onClick={handleSignup}style={{ cursor: "pointer"}}>Signup</NavLink>
+            { (!props.sessionTokenLogged) ? <NavLink onClick={handleSignup}style={{ cursor: "pointer"}}>Signup</NavLink> : <></>}
             </NavItem>
             <NavItem>
               <NavLink style={{ cursor: "pointer"}} onClick={props.clickLogout}>Logout</NavLink>
