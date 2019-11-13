@@ -3,7 +3,18 @@ import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, NavLink, Bu
 
 
 const NavigationBar = (props) => {
+  console.log(props)
   const [isOpen, setIsOpen] = useState(false)
+
+  const handleLogin = (event) => {
+        event.preventDefault();
+        props.setLogin(true);
+  }
+  const handleSignup = (event) => {
+    event.preventDefault();
+    props.setLogin(false);
+}
+
 
   const toggle = () => setIsOpen(!isOpen);
     return(
@@ -14,10 +25,10 @@ const NavigationBar = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink style={{ cursor: "pointer"}}>Login</NavLink>
+              <NavLink onClick={handleLogin}style={{ cursor: "pointer"}}>Login</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink style={{ cursor: "pointer"}}>Signup</NavLink>
+              <NavLink onClick={handleSignup}style={{ cursor: "pointer"}}>Signup</NavLink>
             </NavItem>
             <NavItem>
               <NavLink style={{ cursor: "pointer"}} onClick={props.clickLogout}>Logout</NavLink>

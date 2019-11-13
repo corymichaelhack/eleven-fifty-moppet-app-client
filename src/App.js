@@ -8,6 +8,7 @@ import JumbotronHeader from './header/JumbotronHeader';
 function App() {
 
   const [sessionToken, setSessionToken] = useState('');
+  const [login, setLogin] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem('token')){
@@ -27,12 +28,12 @@ function App() {
   }
 
   const protectedViews = () => {
-    return (sessionToken === localStorage.getItem('token') ? <ChildHome token={sessionToken}/> : <Auth updateToken={updateToken} />)
+    return (sessionToken === localStorage.getItem('token') ? <ChildHome token={sessionToken}/> : <Auth updateToken={updateToken} login={login} setLogin={setLogin}/>)
   }
 
   return (
     <div>
-      <Navigation clickLogout={clearToken}/>
+      <Navigation clickLogout={clearToken} login={login} setLogin={setLogin}/>
       <JumbotronHeader sessionToken={sessionToken}/>
      {protectedViews()}
     </div>

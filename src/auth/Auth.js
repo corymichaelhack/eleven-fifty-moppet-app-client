@@ -4,16 +4,22 @@ import Signup from './Signup';
 import Login from './Login';
 
 const Auth = (props) => {
-    const [login, setLogin] = useState(true);
+    
+
+
 
     const onAuthFieldButton = (event) => {
         event.preventDefault();
-        setLogin(!login);
+        props.setLogin(!props.login);
     }
 
     const authFields = () => {
-        return login ? <Login updateToken={props.updateToken}/> : <Signup updateToken={props.updateToken}/>
+        return props.login ? <Login updateToken={props.updateToken}/> : <Signup updateToken={props.updateToken}/>
 
+    }
+
+    const authToggleTitle = () => {
+        return props.login ? "Admin Sign up" : "Admin Login"
     }
 
 
@@ -22,7 +28,7 @@ const Auth = (props) => {
             <Row>
             <Col md="6" className="login-col">
                 {authFields()}
-                <Button id="button" style={{marginTop: "10px"}} onClick={onAuthFieldButton}>Signup an Admin</Button>
+                <Button id="button" style={{marginTop: "10px"}} onClick={onAuthFieldButton}>{authToggleTitle()}</Button>
             </Col>
             </Row>
         </Container>

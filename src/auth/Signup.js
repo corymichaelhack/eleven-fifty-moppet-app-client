@@ -30,7 +30,7 @@ const Signup = (props) => {
 
     return (
         <div>
-            <h1>Signup</h1>
+            <h1>Admin Signup</h1>
             <Form onSubmit={onSubmitChange}>
                 <FormGroup >
                     <Label htmlFor="emailSignup">Email</Label>
@@ -40,7 +40,7 @@ const Signup = (props) => {
                     <Label htmlFor="password">Password</Label>
                     <Input onChange={(event) => setPassword(event.target.value)} type="password" name="password" value={password} placeholder="password...don't tell"/>
                 </FormGroup>
-                <Button type="submit">Signup</Button>
+                <Button type="submit" color="primary">Signup</Button>
             </Form>
         </div>
     )
