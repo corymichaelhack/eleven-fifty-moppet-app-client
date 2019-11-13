@@ -4,9 +4,6 @@ import Signup from './Signup';
 import Login from './Login';
 
 const Auth = (props) => {
-    
-
-
 
     const onAuthFieldButton = (event) => {
         event.preventDefault();

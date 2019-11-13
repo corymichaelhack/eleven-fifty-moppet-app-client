@@ -1,6 +1,12 @@
 
 .jumbotron {
   position: relative;
+  background-repeat: no-repeat;
+  top: -10px;
+  z-index: -1;
+ 
+  max-width: 100%;
+  
 }
   .greeting {
     font-family: 'Poppins';
@@ -9,13 +15,16 @@
   }
 
   .lead {
-    display: inline;
-    margin: 0px;
+    display: inline-block;
     padding: 10px;
     font-family: 'Poppins';
     color: black;
     background-color: rgb(84, 185, 185, 0.7);
     border-radius: 5px;
   
+  }
+
+  .welcome {
+    padding-bottom: 100px;
   }
   
