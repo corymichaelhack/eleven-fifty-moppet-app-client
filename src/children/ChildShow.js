@@ -11,6 +11,8 @@ const ChildShow = (props) => {
     const [showMeds, setShowMeds] = useState(props.childToShow.meds)
     const [showAllergy, setShowAllergy] = useState(props.childToShow.allergy)
 
+ 
+
     const childUpdate = (event) => {
         event.preventDefault();
         fetch(`http://localhost:3000/moppet/child/update/${props.childToShow.id}`, {
@@ -32,7 +34,7 @@ const ChildShow = (props) => {
         })
         .then((res) => {
             props.fetchChildren();
-            props.updateOff();
+            props.toggle();
         })
     }
 
@@ -46,17 +48,16 @@ const ChildShow = (props) => {
         })
         .then((res) => {
             props.fetchChildren();
-            props.updateOff();   
+            props.toggle();   
         })
     }
+
+    
     
 
     return( 
-        <Modal isOpen={true} fade>
-               <button style={{float: "right", marginLeft: "85%"}} onClick={() => {props.updateOff()}} type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <ModalHeader>
+        <Modal isOpen={props.modal} toggle={props.toggle}>
+        <ModalHeader toggle={props.toggle} >
         <div style={{ display: 'inline'}}>Child Info
         </div>
 

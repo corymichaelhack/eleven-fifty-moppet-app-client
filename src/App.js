@@ -4,6 +4,8 @@ import Auth from './auth/Auth';
 import ChildHome from './children/ChildHome';
 import Navigation from './navigation/NavigationBar';
 import JumbotronHeader from './header/JumbotronHeader';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 
 function App() {
 
@@ -36,9 +38,14 @@ function App() {
 
   return (
     <div>
-      <Navigation clickLogout={clearToken} login={login} setLogin={setLogin} sessionTokenLogged={sessionTokenLogged}/>
+      <Router>
+        <Navigation clickLogout={clearToken} login={login} setLogin={setLogin} sessionTokenLogged={sessionTokenLogged}/>
+      </Router>
       <JumbotronHeader sessionToken={sessionToken}/>
-     {protectedViews()}
+      <Router>
+      {protectedViews()}
+      </Router>
+    
     </div>
   )
 }

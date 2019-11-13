@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, NavLink, Button } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, NavLink } from 'reactstrap';
 
 
 const NavigationBar = (props) => {
@@ -20,7 +20,10 @@ const NavigationBar = (props) => {
     return(
     <div>
       <Navbar color="dark" dark expand="md">
+        
         <NavbarBrand href="/">Moppet</NavbarBrand>
+      
+
         <NavbarToggler onClick={toggle}  />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
@@ -36,6 +39,7 @@ const NavigationBar = (props) => {
           </Nav>
         </Collapse>
       </Navbar>
+
     </div>
     );
 };

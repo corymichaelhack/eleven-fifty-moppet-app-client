@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Button } from 'reactstrap';
-import ChildCreate from './ChildCreate';
-import ChildIndex from './ChildIndex';
+import { Container, Button, ButtonGroup } from 'reactstrap';
+import { Route, Link, Switch } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
+import ChildCreate from './ChildCreate';
+import ChildIndex from './ChildIndex';
+import Calendar from '../calendar/ChildCalendar';
+import IncidentReport from '../incident-report/IncidentReport';
 
 
 
@@ -53,14 +57,39 @@ const ChildHome = (props) => {
             {/* CREATE A CHILD */}
 
                 {updateActive ? <ChildCreate token={props.token } updateOff={updateOff} fetchChildren={fetchChildren}/> : <></>}
+
+             <div className="">
                 
-                <Button style={{float: 'right'}} onClick={()=>{updateOn()}}color="primary" ><FontAwesomeIcon style={{ padding: '2px'}} icon={faPlus} />Enroll Child</Button>
-       
-           
-            
-            {/* SHOW ALL CHILDREN */}
-                <ChildIndex  token={props.token} children={children} fetchChildren={fetchChildren} showChild={showChild}  />
+                    <ButtonGroup style={{ marginBottom: '20px'}}>
+                        <Button outline color="info" >
+                            <Link style={{ textDecoration: 'none', color: 'black'}} to="/children">Children</Link>
+                        </Button>
+                        <Button outline color="info">
+                            <Link style={{ textDecoration: 'none', color: 'black'}} to="/calendar">Calendar</Link>  
+                        </Button>
+                        <Button outline color="info">
+                            <Link style={{ textDecoration: 'none', color: 'black'}} to="/incident">Incident Report</Link>  
+                        </Button>
+                   
+                    </ButtonGroup>
+                        
                 
+            </div>
+
+            <div>
+            <Switch>
+              
+                <Route exact path="/children"><ChildIndex  token={props.token} children={children} fetchChildren={fetchChildren} updateOn={updateOn} showChild={showChild}  />
+                </Route>
+        
+                <Route exact path="/calendar"><Calendar/>
+                </Route>
+                
+                <Route exact path="/incident"><IncidentReport/>
+                </Route>
+              
+            </Switch>
+            </div>
         </Container>
     )
 };
