@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import ChildShow from './ChildShow';
+import APIURL from '../../src/helpers/enviroment';
 
 
 
@@ -23,7 +24,7 @@ const ChildIndex = (props) => {
      //FECTH THE CHILD FROM DATABASE
      const fetchChild = () => {
         
-        fetch(`http://localhost:3000/moppet/child/getchild/${props.child.id}`, {
+        fetch(`${APIURL}/moppet/child/getchild/${props.child.id}`, {
             method: "GET",
             headers: new Headers({
                 'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import APIURL from '../../src/helpers/enviroment';
 import axios from 'axios';
 
 
@@ -17,8 +18,8 @@ const ChildCreate = (props) => {
     const onSubmitChange = (event) => {
         event.preventDefault();
         var formData = new FormData();
-        formData.append('image', file);
-        var childObject = {};
+        // formData.append('image', file);
+        var childObject = [];
         childObject.push({ 
             child : {
                 'firstName': firstName,
@@ -28,10 +29,9 @@ const ChildCreate = (props) => {
                 'allergy' : allergy
             }
         })
-        childObject = JSON.stringify(childObject);
         console.log(childObject)
-        formData.append('childObject', childObject)
-         fetch('http://localhost:3000/moppet/child/addnewchild',
+        formData.append('childObject', JSON.stringify(childObject))
+         fetch(`${APIURL}/moppet/child/addnewchild`,
          {
             method: "POST",
             headers: new Headers({

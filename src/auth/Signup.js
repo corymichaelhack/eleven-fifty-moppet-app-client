@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import APIURL from '../../src/helpers/enviroment';
 
 const Signup = (props) => {
     const [email, setEmail] = useState('');
@@ -7,7 +8,7 @@ const Signup = (props) => {
 
     let onSubmitChange = (event) => {
         event.preventDefault();
-        fetch("http://localhost:3000/moppet/user/signup",  {
+        fetch(`${APIURL}/moppet/user/signup`,  {
             method: "POST", 
             body: JSON.stringify({ user: {
                 email: email, 

@@ -10,6 +10,8 @@ import ChildIndex from './ChildIndex';
 import Calendar from '../calendar/ChildCalendar';
 import IncidentReport from '../incident-report/IncidentReport';
 
+import APIURL from '../../src/helpers/enviroment';
+
 
 
 
@@ -39,7 +41,7 @@ const ChildHome = (props) => {
 
      //FECTH THE CHILD FROM DATABASE
     const fetchChildren = () => {
-        fetch('http://localhost:3000/moppet/child/allchildren', {
+        fetch(`${APIURL}/moppet/child/allchildren`, {
             method: "GET",
             headers: new Headers({
                 'Content-Type': 'application/json',

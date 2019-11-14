@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {  Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import APIURL from '../../src/helpers/enviroment';
 
 
 const ChildShow = (props) => {
@@ -15,7 +16,7 @@ const ChildShow = (props) => {
 
     const childUpdate = (event) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/moppet/child/update/${props.childToShow.id}`, {
+        fetch(`${APIURL}/moppet/child/update/${props.childToShow.id}`, {
             method: 'PUT',
             body: JSON.stringify(
                 { child:
