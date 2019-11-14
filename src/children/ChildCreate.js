@@ -6,7 +6,6 @@ import axios from 'axios';
 const ChildCreate = (props) => {
     const [file, setFile] = useState([]);
     const [filename, setFilename] = useState('Choose File');
-    const [uploadedFile, setUploadedFile] = useState({});
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -14,59 +13,37 @@ const ChildCreate = (props) => {
     const [meds, setMeds] = useState('');
     const [allergy, setAllergy] = useState('');
 
-    const onChanges = (event) => {
-        setFile(event.target.files[0]);
-        setFilename(event.target.files[0].name)
-    }
-
-    const onSubmitPhoto = async (event) => {
-        event.preventDefault();
-        let formData = new FormData();
-        formData.append('image', file);
-        var options = { content: formData };
-        console.log(options)
-
-        // try {
-        //     const res = await axios.post('http://localhost:3000/moppet/upload', formData, {
-        //         headers: {
-        //             'Content-Type': 'multipart/form-data'
-        //         }
-        //     });
-        //     const {fileName, filePath } = res.data;
-
-        //     setUploadedFile({fileName, filePath});
-        // } catch(err) {
-        //     if(err.response.status === 500) {
-        //         console.log("problem with server")
-        //     } else {
-        //         console.log(err.response.data.msg)
-        //     }
-        // }
-    }
 
     const onSubmitChange = (event) => {
         event.preventDefault();
-        fetch('http://localhost:3000/moppet/child/addnewchild', {
-            method: "POST",
-            body: JSON.stringify(
-                { child:
-                    {
-                        firstName: firstName,
-                        lastName: lastName,
-                        dateOfBirth: dateOfBirth,
-                        meds: meds,
-                        allergy: allergy  
-                    },
-                    
-                }
-                 ),
-
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': props.token
-            }) 
-            
+        var formData = new FormData();
+        formData.append('image', file);
+        var childObject = {};
+        childObject.push({ 
+            child : {
+                'firstName': firstName,
+                'lastName': lastName,
+                'dateOfBirth' : dateOfBirth,
+                'meds': meds,
+                'allergy' : allergy
+            }
         })
+        childObject = JSON.stringify(childObject);
+        console.log(childObject)
+        formData.append('childObject', childObject)
+         fetch('http://localhost:3000/moppet/child/addnewchild',
+         {
+            method: "POST",
+            headers: new Headers({
+                // 'Content-Type': 'multipart/form-data',
+                'Authorization': props.token
+            }),
+            
+            body: formData
+            },
+            
+        
+        )
         .then( (res) => {
             props.fetchChildren();
             props.updateOff();
@@ -90,13 +67,16 @@ const ChildCreate = (props) => {
         <ModalBody>
             <h3>Enroll Child</h3>
         
-        {/* <Label htmlFor="file">{filename}</Label>
-        <Input type="file" name="file" id="file"  onChange={(event) => setFile(event.target.files[0])}/> */}
-        
+       
+            
 
-        <Button type="button" onClick={onSubmitPhoto}>Submit</Button>
+        {/* <Button type="button" onClick={onSubmitPhoto}>Submit</Button> */}
     
-            <Form onSubmit={onSubmitChange} >
+            <Form onSubmit={onSubmitChange} encType="multipart/form-data">
+                <FormGroup>
+                    <Label htmlFor="image">{filename}</Label>
+                    <Input type="file" name="image" id="image" onChange={(event) => setFile(event.target.files[0])}/>
+                </FormGroup>
                 <FormGroup>
                     <Label htmlFor="firstName">First Name</Label>
                     <Input onChange={(event) => setFirstName(event.target.value)} type="text" name="firstName" value={firstName}/>

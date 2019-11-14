@@ -64,7 +64,7 @@ const ChildIndex = (props) => {
                 <Button style={{float: 'right'}} onClick={()=>{props.updateOn()}}outline color="success" ><FontAwesomeIcon style={{ padding: '2px'}} icon={faPlus} />Enroll Child</Button>
             </div>
             
-            {/* <Button style={{float: 'right'}} onClick={toggle}color="primary" ><FontAwesomeIcon style={{ padding: '2px'}} icon={faPlus} />Enroll Child</Button> */}
+       
             <CardDeck>
             {childMapper()}
             </CardDeck>
