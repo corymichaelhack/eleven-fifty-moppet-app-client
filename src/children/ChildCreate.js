@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import APIURL from '../../src/helpers/enviroment';
-import axios from 'axios';
+
 
 
 const ChildCreate = (props) => {
-    const [file, setFile] = useState([]);
+    const [file, setFile] = useState('');
     const [filename, setFilename] = useState('Choose File');
 
     const [firstName, setFirstName] = useState('');
@@ -14,43 +14,8 @@ const ChildCreate = (props) => {
     const [meds, setMeds] = useState('');
     const [allergy, setAllergy] = useState('');
 
-
-    const onSubmitChange = (event) => {
-        event.preventDefault();
-        var formData = new FormData();
-        // formData.append('image', file);
-        var childObject = [];
-        childObject.push({ 
-            child : {
-                'firstName': firstName,
-                'lastName': lastName,
-                'dateOfBirth' : dateOfBirth,
-                'meds': meds,
-                'allergy' : allergy
-            }
-        })
-        console.log(childObject)
-        formData.append('childObject', JSON.stringify(childObject))
-         fetch(`${APIURL}/moppet/child/addnewchild`,
-         {
-            method: "POST",
-            headers: new Headers({
-                // 'Content-Type': 'multipart/form-data',
-                'Authorization': props.token
-            }),
-            
-            body: formData
-            },
-            
-        
-        )
-        .then( (res) => {
-            props.fetchChildren();
-            props.updateOff();
-        })
-        .catch((error => {
-            console.log("upload error", error)
-        }))
+    const afterSubmit = () => {
+        setTimeout(function(){props.fetchChildren();props.updateOff()},3000)
     }
 
     return (
@@ -66,17 +31,14 @@ const ChildCreate = (props) => {
         
         <ModalBody>
             <h3>Enroll Child</h3>
-        
-       
-            
-
-        {/* <Button type="button" onClick={onSubmitPhoto}>Submit</Button> */}
     
-            <Form onSubmit={onSubmitChange} encType="multipart/form-data">
-                <FormGroup>
-                    <Label htmlFor="image">{filename}</Label>
+            <Form onSubmit={afterSubmit} action={`${APIURL}/moppet/child/addnewchild`} method="post" 
+            encType="multipart/form-data">
+                <FormGroup >
+                    <Label htmlFor="image"></Label>
                     <Input type="file" name="image" id="image" onChange={(event) => setFile(event.target.files[0])}/>
                 </FormGroup>
+               
                 <FormGroup>
                     <Label htmlFor="firstName">First Name</Label>
                     <Input onChange={(event) => setFirstName(event.target.value)} type="text" name="firstName" value={firstName}/>
@@ -102,6 +64,7 @@ const ChildCreate = (props) => {
                 </FormGroup>
                 
                 <Button type="submit">Click to Submit</Button>
+                
                 <Button style={{float: "right"}} size="sm" color="outline-dark" onClick={() => {props.updateOff()}}>Exit</Button>
             </Form> 
             </ModalBody>
