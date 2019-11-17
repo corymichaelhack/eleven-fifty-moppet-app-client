@@ -16,7 +16,7 @@ const ChildCreate = (props) => {
     const [allergy, setAllergy] = useState('');
 
     const onCreateChild1 = () => {
-        setTimeout(function(){props.fetchChildren();props.updateOff()},15000)
+        setTimeout(function(){props.fetchChildren();props.updateOff()},29000)
     }
 
 // const onCreateChild2 = (event) => {
