@@ -4,6 +4,7 @@ import APIURL from '../../src/helpers/enviroment';
 
 
 
+
 const ChildCreate = (props) => {
     const [file, setFile] = useState('');
     const [filename, setFilename] = useState('Choose File');
@@ -14,9 +15,24 @@ const ChildCreate = (props) => {
     const [meds, setMeds] = useState('');
     const [allergy, setAllergy] = useState('');
 
-    const afterSubmit = () => {
-        setTimeout(function(){props.fetchChildren();props.updateOff()},3000)
+    const onCreateChild1 = () => {
+        setTimeout(function(){props.fetchChildren();props.updateOff()},5000)
     }
+
+// const onCreateChild2 = (event) => {
+//     const data = new FormData();
+//     data.append('file', file);
+//     data.append('firstName', firstName);
+//     data.append('lastName', lastName);
+//     data.append('dateOfBirth', dateOfBirth);
+//     data.append('meds', meds);
+//     data.append('allergy', allergy);
+
+//     axios.post(`${APIURL}/moppet/child/addnewchild`, data).then((response) => {
+//         console.log(response);
+//     });
+// }
+
 
     return (
 
@@ -32,8 +48,12 @@ const ChildCreate = (props) => {
         <ModalBody>
             <h3>Enroll Child</h3>
     
-            <Form onSubmit={afterSubmit} action={`${APIURL}/moppet/child/addnewchild`} method="post" 
-            encType="multipart/form-data">
+            <Form onSubmit={onCreateChild1} 
+            
+            action={`${APIURL}/moppet/child/addnewchild`} method="post" 
+            encType="multipart/form-data"
+            
+            >
                 <FormGroup >
                     <Label htmlFor="image"></Label>
                     <Input type="file" name="image" id="image" onChange={(event) => setFile(event.target.files[0])}/>

@@ -5,7 +5,6 @@ import bgimage from '../assets/moppet-daycare.jpg';
 
 
 const JumbotronHeader = (props) => {
-    console.log(props);
 
   return (
      <div>

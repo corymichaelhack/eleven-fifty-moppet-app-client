@@ -9,7 +9,7 @@ switch(window.location.hostname) {
         //deployed react application
     case 'moppet-app-client-cmh.herokuapp.com':
         //full url of your deployed API
-        APIURL = 'https://moppet-app-server-cmh.herokuapp.com';
+        APIURL = "https://moppet-app-server-cmh.herokuapp.com";
         break;
 }
 

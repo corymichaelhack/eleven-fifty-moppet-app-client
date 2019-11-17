@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import { Button, Form, FormGroup, Label, Input  } from 'reactstrap';
-import APIURL from '../../src/helpers/enviroment';
+import APIURL from '../helpers/enviroment';
 
 
 const Login = (props) => {

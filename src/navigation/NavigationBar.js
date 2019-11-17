@@ -3,7 +3,7 @@ import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, NavLink } f
 
 
 const NavigationBar = (props) => {
-  console.log(props)
+
   const [isOpen, setIsOpen] = useState(false)
 
   const handleLogin = (event) => {
