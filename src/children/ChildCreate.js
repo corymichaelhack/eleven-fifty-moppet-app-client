@@ -15,23 +15,31 @@ const ChildCreate = (props) => {
     const [meds, setMeds] = useState('');
     const [allergy, setAllergy] = useState('');
 
-    const onCreateChild1 = () => {
-        setTimeout(function(){props.fetchChildren();props.updateOff()},29000)
+    const onSubmitNewChild = (event) => {
+        event.preventDefault();
+        fetch(`${APIURL}/moppet/child/addnewchild`, {
+            method: "POST",
+            body: JSON.stringify({
+                child: {
+                    firstName: firstName,
+                    lastName: lastName,
+                    dateOfBirth: dateOfBirth,
+                    meds: meds,
+                    allergy: allergy
+                }
+                
+            }
+            ),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': props.token
+            })
+           
+        }).then( (response) => {
+            props.fetchChildren();
+            props.updateOff();
+        }).catch((err) => err.message);
     }
-
-// const onCreateChild2 = (event) => {
-//     const data = new FormData();
-//     data.append('file', file);
-//     data.append('firstName', firstName);
-//     data.append('lastName', lastName);
-//     data.append('dateOfBirth', dateOfBirth);
-//     data.append('meds', meds);
-//     data.append('allergy', allergy);
-
-//     axios.post(`${APIURL}/moppet/child/addnewchild`, data).then((response) => {
-//         console.log(response);
-//     });
-// }
 
 
     return (
@@ -48,7 +56,7 @@ const ChildCreate = (props) => {
         <ModalBody>
             <h3>Enroll Child</h3>
     
-            <Form onSubmit={onCreateChild1} 
+            <Form onSubmit={onSubmitNewChild} 
             
             action={`${APIURL}/moppet/child/addnewchild`} method="post" 
             encType="multipart/form-data"
@@ -61,26 +69,26 @@ const ChildCreate = (props) => {
                
                 <FormGroup>
                     <Label htmlFor="firstName">First Name</Label>
-                    <Input onChange={(event) => setFirstName(event.target.value)} type="text" name="firstName" value={firstName}/>
+                    <Input onChange={(event) => setFirstName(event.target.value)} type="text" name="child[firstName]" value={firstName}/>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="lastName">Last Name</Label>
-                    <Input onChange={(event) => setLastName(event.target.value)} type="text" name="lastName" value={lastName}>
+                    <Input onChange={(event) => setLastName(event.target.value)} type="text" name="child[lastName]" value={lastName}>
                     </Input>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="dateOfBirth">Date of Birth</Label>
-                    <Input onChange={(event) => setDateOfBirth(event.target.value)} value={dateOfBirth} type="date" name="dateOfBirth"  pattern="[0-9]{8}">
+                    <Input onChange={(event) => setDateOfBirth(event.target.value)} value={dateOfBirth} type="date" name="child[dateOfBirth]"  pattern="[0-9]{8}">
                     </Input>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="meds">Medication</Label>
-                    <Input onChange={(event) => setMeds(event.target.value)} type="text" name="meds" value={meds}>
+                    <Input onChange={(event) => setMeds(event.target.value)} type="text" name="child[meds]" value={meds}>
                     </Input>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="allergy">Allergy</Label>
-                    <Input onChange={(event) => setAllergy(event.target.value)} type="text" name="allergy" value={allergy}/>
+                    <Input onChange={(event) => setAllergy(event.target.value)} type="text" name="child[allergy]" value={allergy}/>
                 </FormGroup>
                 
                 <Button type="submit">Click to Submit</Button>

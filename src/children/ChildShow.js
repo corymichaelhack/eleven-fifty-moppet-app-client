@@ -12,13 +12,29 @@ const ChildShow = (props) => {
     const [showMeds, setShowMeds] = useState(props.childToShow.meds)
     const [showAllergy, setShowAllergy] = useState(props.childToShow.allergy)
 
-    
-
-
-    const afterSubmit = () => {
-        setTimeout(function(){props.fetchChildren();
-        props.toggle()},3000)
+    const childUpdate = (event) => {
+        event.preventDefault();
+        fetch(`${APIURL}/moppet/child/update/${props.childToShow.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(
+                { child :
+                {   firstName: showFirstName, 
+                    lastName: showLastName, 
+                    dateOfBirth: showDateOfBirth,
+                    meds: showMeds,
+                    allergy: showAllergy,
+                }
+                }),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': props.token
+            })
+        }).then((res) => {
+            props.fetchChildren();
+            props.toggle();
+        })
     }
+   
 
     const deleteChild = (child) => {
         fetch(`http://localhost:3000/moppet/child/delete/${props.childToShow.id}`, {
@@ -46,7 +62,7 @@ const ChildShow = (props) => {
         </ModalHeader>
         <ModalBody>
    
-        <Form onSubmit={afterSubmit} action={`${APIURL}/moppet/child/update/${props.childToShow.id}`} method="post" 
+        <Form onSubmit={childUpdate} 
             encType="multipart/form-data">
                 <FormGroup >
                     <Label htmlFor="image"></Label>
@@ -54,7 +70,7 @@ const ChildShow = (props) => {
                 </FormGroup>
                <FormGroup>
                    <Label htmlFor="description">First Name:</Label>
-                   <Input onChange={(event) => setShowFirstName(event.target.value)} name="description" value={showFirstName}/>
+                   <Input onChange={(event) => setShowFirstName(event.target.value)} name="firstName" value={showFirstName}/>
                </FormGroup>
                <FormGroup>
                     <Label htmlFor="lastName">Last Name</Label>
