@@ -1,10 +1,12 @@
 import React, { useState, useEffect} from 'react';
 import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Auth from './auth/Auth';
 import ChildHome from './children/ChildHome';
 import Navigation from './navigation/NavigationBar';
 import JumbotronHeader from './header/JumbotronHeader';
-import { BrowserRouter as Router } from 'react-router-dom';
+import Footer from './footer/Footer';
+
 
 
 function App() {
@@ -37,7 +39,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div style={{ marginBottom: "100px"}}>
       <Router>
         <Navigation clickLogout={clearToken} login={login} setLogin={setLogin} sessionTokenLogged={sessionTokenLogged}/>
       </Router>
@@ -45,6 +47,7 @@ function App() {
       <Router>
       {protectedViews()}
       </Router>
+      <Footer/>
     
     </div>
   )
