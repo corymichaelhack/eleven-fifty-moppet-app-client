@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import { Table } from 'reactstrap';
 
 
 const ChildCalendar = () => {
+    const [date, setDate] = useState( new Date());
+
+    const onChange = date => {
+      setDate(date)
+    }
+
     return(
         <div>
         <h1> Calendar Info </h1>
         <div style={{ display: 'flex', justifyContent: 'space-between'}}>
-        <Calendar/>
+        <Calendar onChange={onChange} value={date}/>
        
         <Table className='dayInfo'>
         <thead>

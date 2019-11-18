@@ -13,8 +13,7 @@ const Signup = (props) => {
             body: JSON.stringify({ user: {
                 email: email, 
                 password: password   
-                }
-                         
+                }            
             }
             ),
             headers: new Headers({
@@ -26,6 +25,7 @@ const Signup = (props) => {
         )
         .then((data) => {
             props.updateToken(data.sessionToken)
+           
         })
     }
 
@@ -39,7 +39,7 @@ const Signup = (props) => {
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="password">Password</Label>
-                    <Input onChange={(event) => setPassword(event.target.value)} type="password" name="password" value={password} placeholder="password...don't tell" minlength="5" title="Password must be 5 characters minimum" pattern="[A-Za-z0-9]{5,}" required/>
+                    <Input onChange={(event) => setPassword(event.target.value)} type="password" name="password" value={password} placeholder="password...don't tell" minLength="5" title="Password must be 5 characters minimum" pattern="[A-Za-z0-9]{5,}" required/>
                 </FormGroup>
                 <Button type="submit" color="primary">Signup</Button>
             </Form>
