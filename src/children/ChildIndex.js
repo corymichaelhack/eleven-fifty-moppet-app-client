@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardTitle, Button, CardImg, CardDeck } from 'reactstrap';
 
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -35,7 +36,14 @@ const ChildIndex = (props) => {
         .then((childData) => setChild(childData))
     }
 
-
+    const calcAge = (birthdate) => {
+        let currentDate = new Date();
+        birthdate = birthdate.substr(0,4);
+        currentDate = currentDate.getUTCFullYear();
+        birthdate = parseInt(birthdate); 
+        let currentAge = currentDate - birthdate;
+        return currentAge  
+    }
 
     const childMapper = () => {
         return props.children.map((child, index) => {
@@ -44,7 +52,9 @@ const ChildIndex = (props) => {
                 <Card >
                     <CardImg style={{width: "200px", borderRadius: "100px", }} top src={child.imageUrl}/>
                     <CardBody>
+                    
                     <CardTitle>{child.lastName}, {child.firstName}</CardTitle>
+                    <p>Age: { calcAge(child.dateOfBirth)}</p>
 
                     <Button onClick={()=>{showChild(child);toggle()}}color="primary" >Show more...</Button>
                     </CardBody>
