@@ -37,7 +37,7 @@ const ChildShow = (props) => {
    
 
     const deleteChild = (child) => {
-        fetch(`http://localhost:3000/moppet/child/delete/${props.childToShow.id}`, {
+        fetch(`${APIURL}/moppet/child/delete/${props.childToShow.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
