@@ -7,24 +7,22 @@ const IncidentReport = (props) => {
     const [dateOfIncident, setDateOfIncident] = useState('');
     const [detailsOfIncident, setDetailsOfIncident] = useState('');
     const [reportingAdmin, setReportingAdmin] = useState('');
-
-    const onSubmitReport = () => {
-
-    }
+    const [email, setEmail] = useState('cory.hack@gmail.com');
 
 
 
     return(
         <div>
             <h1> Incident Report </h1>
-            <Form onSubmit={onSubmitReport}>
+            <Form 
+            action={`https://formspree.io/${email}`}method="post">
                 <FormGroup>
                     <Label htmlFor="date">Date</Label>
                     <Input onChange={(event) => setDate(event.target.value)} type="date" name="date" value={date} pattern="[0-9]{8}"/>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="studentName">Student Name</Label>
-                    <Input onChange={(event) => setStudentName(event.target.value)} type="text" name="studentName" pattern="[0-9]{8}" value={studentName}>
+                    <Input onChange={(event) => setStudentName(event.target.value)} type="text" name="studentName"  value={studentName}>
                     </Input>
                 </FormGroup>
                 <FormGroup>
