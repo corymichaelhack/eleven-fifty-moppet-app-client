@@ -7,7 +7,7 @@ const IncidentReport = (props) => {
     const [dateOfIncident, setDateOfIncident] = useState('');
     const [detailsOfIncident, setDetailsOfIncident] = useState('');
     const [reportingAdmin, setReportingAdmin] = useState('');
-    const [email, setEmail] = useState('cory.hack@gmail.com');
+    const [email, setEmail] = useState('busterk@ymail.com');
 
 
 

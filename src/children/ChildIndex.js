@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, CardBody, CardTitle, Button, CardImg, CardDeck } from 'reactstrap';
 import {Typeahead} from 'react-bootstrap-typeahead';
 
@@ -10,10 +10,9 @@ import ChildShow from './ChildShow';
 
 
 
-
-
 const ChildIndex = (props) => {
-   
+   console.log(props)
+
     const [child, setChild] = useState({});
     const [childToShow, setChildToShow] = useState({});
 
@@ -27,7 +26,7 @@ const ChildIndex = (props) => {
      //FECTH THE CHILD FROM DATABASE
      const fetchChild = () => {
         
-        fetch(`${APIURL}/moppet/child/getchild/${props.child.id}`, {
+        fetch(`${APIURL}/moppet/child/getchild/${props.children.id}`, {
             method: "GET",
             headers: new Headers({
                 'Content-Type': 'application/json',
