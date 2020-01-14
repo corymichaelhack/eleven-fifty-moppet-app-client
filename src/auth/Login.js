@@ -14,7 +14,7 @@ const Login = (props) => {
         fetch( `${APIURL}/moppet/user/signin`, {
             method: "POST",
             body: JSON.stringify({ user: {
-                email: email,
+                email: email.toLowerCase(),
                 password: password
             }
                 
