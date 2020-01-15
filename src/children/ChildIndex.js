@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { Card, CardBody, CardTitle, Button, CardImg, CardDeck } from 'reactstrap';
-import {Typeahead} from 'react-bootstrap-typeahead';
+import { Card, CardBody, CardTitle, Button, CardImg, CardDeck, FormGroup, Input, Form, Label } from 'reactstrap';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import APIURL from '../../src/helpers/enviroment';
 
 import ChildShow from './ChildShow';
+import SearchResults from '../search/SearchResults'
 
 
 
 const ChildIndex = (props) => {
-   console.log(props)
-
+    console.log(props)
+    
     const [child, setChild] = useState({});
+
+    const [searchterm, setSearchTerm] = useState();
+    
     const [childToShow, setChildToShow] = useState({});
 
     const [modal, setModal] = useState(false);
@@ -46,11 +50,6 @@ const ChildIndex = (props) => {
         return currentAge  
     }
 
-    const onSubmitSearch = (event) => {
-        event.preventDefault();
-        console.log('I was submited')
-    }
-
     const childMapper = () => {
         return props.children.map((child, index) => {
             return(
@@ -71,16 +70,25 @@ const ChildIndex = (props) => {
 
     }
 
+    const handleChange = (e) => {
+        setSearchTerm(e.target.value.toLowerCase());
+        console.log(searchterm)
+    }
+
+
+
     return ( 
         <div>
             <div>
-                <div style={{ marginBottom: "20px"}}>
-                <Typeahead onSubmit={onSubmitSearch} labelKey="firstName" options={props.children} placeholder="Search for a child here..."/>
-                </div>
+                <Form >
+                    <FormGroup>
+                        <Label>
+                            <Input  onInput={handleChange}/>
+                        </Label>
+                        <SearchResults children={props.children} searchterm={searchterm}/>
+                    </FormGroup>
+                </Form>
 
-                
-             
-                
                 <h3  style={{ display: 'inline'}}>Enrolled Children</h3>
                 <Button style={{float: 'right'}} onClick={()=>{props.updateOn()}}outline color="success" ><FontAwesomeIcon style={{ padding: '2px'}} icon={faPlus} />Enroll Child</Button>
             </div>
